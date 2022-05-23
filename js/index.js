@@ -667,6 +667,9 @@ function ModuleController() {
     //вешаем обработчик на клики
     document.addEventListener('click', function (event) {
 
+      console.log(event.target)
+      console.log(event.target.id)
+
       let exercis_id = event.target.parentElement.getAttribute("data-id")
       let exercis_chekedStatus = event.target.parentElement.getAttribute("data-cheked")
 
@@ -756,7 +759,6 @@ function ModuleController() {
           if (
             (firstRepWeight.value && firstRepExercis.value && secondRepWeight.value && secondRepExercis.value &&
               thirdRepWeight.value && thirdRepExercis.value && fourRepWeight.value && fourRepExercis.value)) {
-            console.log("зашлло в иф")
 
             myModuleModel.sentForm(firstRepWeight.value, firstRepExercis.value, secondRepWeight.value, secondRepExercis.value,
               thirdRepWeight.value, thirdRepExercis.value, fourRepWeight.value, fourRepExercis.value, dataId, dataName)
