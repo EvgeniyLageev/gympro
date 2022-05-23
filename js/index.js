@@ -47,7 +47,7 @@ function ModuleView() {
 
   const StartComponent = {
     id: "start",
-    title: "Кнопка старт, запускает тренировку",
+    title: "Start",
     render: (className = "container") => {
       if (auth.currentUser) {
         return `
@@ -72,7 +72,7 @@ function ModuleView() {
 
   const HistoryComponent = {
     id: "history",
-    title: "История и прогресс",
+    title: "History and Progress",
     render: (className = "container") => {
       if (auth.currentUser) {
         return `
@@ -97,7 +97,7 @@ function ModuleView() {
 
   const ErrorComponent = {
     id: "error",
-    title: "Achtung, warning, kujdes, attenzione, pozornost...",
+    title: "Error 404",
     render: (className = "container") => {
       return `
           <section class="${className}">
