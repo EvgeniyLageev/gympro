@@ -279,7 +279,8 @@ function ModuleView() {
     for (let i = 0; i < date.length; i++) {
       let divAttempt = document.createElement("div")
       let h3 = document.createElement("h3")
-      h3.innerHTML = `${date[i]} "- это дата в миллисекундах))"`
+      console.log(date)
+      h3.innerHTML = `${new Date(date[i])}`
 
       let p = document.createElement("p")
       p.innerHTML = "Здесь был бы график, если бы я успел))).</br> Вы сделали ___ повторов с весом___."
@@ -575,7 +576,7 @@ function ModuleModel() {
   //отправляет данные о весе и повторениях в бд
   this.sentForm = function (firstRepWeight, firstRepExercis, secondRepWeight, secondRepExercis,
     thirdRepWeight, thirdRepExercis, fourRepWeight, fourRepExercis, dataId, dataNam) {
-    let newDate = new Date().getTime();
+    let newDate = new Date();
     myAppDB.ref("users/" + auth.currentUser.uid + "/progress/" + dataNam).update(
       {
         [newDate]: {
@@ -615,9 +616,6 @@ function ModuleModel() {
   this.backButton = function () {
     window.history.back();
   }
-
-
-
   //создает новую БД для нового пользователя
   copyDataBase = function (user) {
 
@@ -660,9 +658,6 @@ function ModuleController() {
 
     //вешаем обработчик на клики
     document.addEventListener('click', function (event) {
-
-      console.log(event.target)
-      console.log(event.target.id)
 
       let exercis_id = event.target.parentElement.getAttribute("data-id")
       let exercis_chekedStatus = event.target.parentElement.getAttribute("data-cheked")
