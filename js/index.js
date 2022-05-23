@@ -401,26 +401,30 @@ function ModuleModel() {
   //собираем инфу из БД для инпутов
   this.prepareFillInputsStart = function (sel) {
 
-    myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").orderByChild('cheked').equalTo(true)
-      .once('value')
-      .then(function (snapshot) {
+    if (auth.currentUser) {
+      myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").orderByChild('cheked').equalTo(true)
+        .once('value')
+        .then(function (snapshot) {
 
-        myModuleView.fillInputsStart(sel, snapshot.val());
-      });
+          myModuleView.fillInputsStart(sel, snapshot.val());
+        });
+    }
   }
   //собираем инфу из БД для инпутов
   this.prepareFillInputsHistory = function (select) {
 
-    myAppDB.ref("users/" + (auth.currentUser).uid + "/progress")
-      .once('value')
-      .then(function (snapshot) {
-        let arr = [];
-        snapshot.forEach(function (childSnapshot) {
-          arr.push(childSnapshot.key)
+    if (auth.currentUser) {
+      myAppDB.ref("users/" + (auth.currentUser).uid + "/progress")
+        .once('value')
+        .then(function (snapshot) {
+          let arr = [];
+          snapshot.forEach(function (childSnapshot) {
+            arr.push(childSnapshot.key)
 
+          });
+          myModuleView.fillInputsHistory(select, arr);
         });
-        myModuleView.fillInputsHistory(select, arr);
-      });
+    }
   }
 
   //находим упражнения в базе
@@ -530,34 +534,38 @@ function ModuleModel() {
 
   //ещем и удаляем нужное упражнения в локальной базе
   this.findExercis = function (exercis) {
-
-    myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").orderByChild('id').equalTo(exercis)
-      .once('value')
-      .then(function (snapshot) {
-        console.log(snapshot);
-        console.log(snapshot.val());
-        snapshot.forEach(function (childSnapshot) {
-          //remove each child
-          myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").child(childSnapshot.key).remove();
+    if (auth.currentUser) {
+      myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").orderByChild('id').equalTo(exercis)
+        .once('value')
+        .then(function (snapshot) {
+          console.log(snapshot);
+          console.log(snapshot.val());
+          snapshot.forEach(function (childSnapshot) {
+            //remove each child
+            myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").child(childSnapshot.key).remove();
+          });
         });
-      });
+    }
   }
   //ставит метку на упражнение в локальной базе
   this.checkStatus = function (exercis, cheked) {
-    myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").orderByChild('id').equalTo(exercis)
-      .once('value')
-      .then(function (snapshot) {
-        console.log(snapshot);
-        console.log(snapshot.val());
-        snapshot.forEach(function (childSnapshot) {
 
-          if (cheked === "false") {
-            myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").child(childSnapshot.key).update({ cheked: true });
-          } if (cheked === "true") {
-            myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").child(childSnapshot.key).update({ cheked: false });
-          }
+    if (auth.currentUser) {
+      myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").orderByChild('id').equalTo(exercis)
+        .once('value')
+        .then(function (snapshot) {
+          console.log(snapshot);
+          console.log(snapshot.val());
+          snapshot.forEach(function (childSnapshot) {
+
+            if (cheked === "false") {
+              myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").child(childSnapshot.key).update({ cheked: true });
+            } if (cheked === "true") {
+              myAppDB.ref("users/" + (auth.currentUser).uid + "/exercises").child(childSnapshot.key).update({ cheked: false });
+            }
+          });
         });
-      });
+    }
   }
   //подготовка к заполнению инпутов
   this.checkFillInputs = function () {
