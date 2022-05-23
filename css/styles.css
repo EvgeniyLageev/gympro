@@ -1,0 +1,469 @@
+body {
+  max-width: 1280px;
+  width: 100vw;
+  min-width: 320px;
+  margin: 0 auto;
+  font-family: 'Big Shoulders Text', cursive;
+}
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* ====HEADER====== */
+
+.header {
+  text-align: center;
+  background-color: #000;
+  margin-bottom: 25px;
+  position: fixed;
+  max-width: 1280px;
+  width: 100vw;
+  min-width: 320px;
+}
+
+/* ====logo__wrapper====== */
+
+.logo__wrapper>a {
+  color: white;
+  text-decoration: none;
+}
+
+.logo__wrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid deepskyblue;
+}
+
+/* ====user&login====== */
+
+.login__svg {
+  stroke: orange;
+  stroke-opacity: 0.5;
+}
+
+.login:hover>span {
+  text-decoration: underline;
+}
+
+.login:hover>svg {
+  stroke-opacity: 1;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.svg_signIn {
+  stroke-opacity: 1;
+}
+
+.login__word {
+  color: white;
+  cursor: pointer;
+}
+
+/* ====logo====== */
+
+.logo {
+  flex: 1;
+}
+
+.logo__row {
+  display: block;
+  font-family: 'Dancing Script', cursive;
+}
+
+.logo__first,
+.logo__second {
+  letter-spacing: 3px;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.logo__first {
+  color: deepskyblue;
+}
+
+/* ==========navmenu======== */
+
+.navmenu__list {
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navmenu__list>li {
+  flex: auto;
+  text-align: center;
+}
+
+.navmenu__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.menu__icon {
+  width: 25px;
+  height: 25px;
+}
+
+.navmenu__link:hover {
+  text-decoration: underline;
+}
+
+
+/* ======FOOTER=========== */
+
+.footer {
+  max-width: inherit;
+  width: inherit;
+  min-width: inherit;
+  background-color: black;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  border-top: 3px solid dodgerblue;
+  text-align: center;
+}
+
+/* ===========MAIN=========== */
+
+.div__wrapper2 {
+  border: 3px solid deepskyblue;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main {
+  padding-top: 150px;
+  max-width: inherit;
+  width: inherit;
+  min-width: inherit;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+.main-page>p {
+  margin: 15px auto;
+}
+
+.active {
+  background-color: deepskyblue;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+#login__link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* -------------модальное с упражнением---------
+ */
+.repsWrapper {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: white;
+  padding: 5px 5px;
+  z-index: 1;
+}
+
+.repsInputWrapper {
+  display: flex;
+  align-items: center;
+  /* gap: 10px; */
+}
+
+.repsInput {
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+  height: fit-content;
+}
+
+.repsInput:focus {
+  border: 2px solid #3498DB;
+  box-shadow: none;
+}
+
+.repsLink {
+  width: 35px;
+  height: 35px;
+}
+
+.minRepsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ==========инпуты для exercises========== */
+
+.wrapperInput,
+.start-page,
+.history-page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px;
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+.name__input {
+  width: inherit;
+}
+
+.div__select {
+  max-width: inherit;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 5px;
+}
+
+.selectExersices {
+  flex: 1;
+  border-radius: 15%;
+}
+
+.btnSearch {
+  display: inline;
+  background-color: deepskyblue;
+}
+
+.btnSearch,
+.selectExersices,
+.name__input {
+  border-radius: 10px;
+  padding: 5px 0;
+}
+
+.selectExersices,
+.name__input {
+  color: white;
+  background-color: black;
+}
+
+/* =======================блок с упражнениями============ */
+.wrapper__input {
+  display: flex;
+  border: 1px solid deepskyblue;
+  margin: 10px 25px;
+  align-items: center;
+  padding-right: 20px;
+  gap: 25px;
+  max-width: 600px;
+}
+
+.gifUrl {
+  height: 150px;
+  padding-right: 25px;
+}
+
+.key {
+  font-weight: bold;
+  padding-right: 25px;
+}
+
+.key__list,
+.value__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.value__list {
+  flex: 1;
+}
+
+.extra {
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+  padding: 0 15px;
+}
+
+.login__svg:hover {
+  stroke: orange;
+}
+
+.exercisLink {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.exercisLink:hover {
+  border: 1px solid orange;
+  border-radius: 25%;
+}
+
+/* --------------------LOGIN---------- */
+
+.app-title {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: white;
+  padding: 5px 5px;
+  z-index: 1;
+}
+
+.background {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .7);
+}
+
+.login-form {
+  text-align: center;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+
+.login-field {
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  /* font-size: 16px; */
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+}
+
+.login-field:focus {
+  border: 2px solid #3498DB;
+  box-shadow: none;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 10px auto;
+}
+
+.btn:hover {
+  background-color: deepskyblue;
+}
+
+/* -----------------медиазапросы---------- */
+@media screen and (max-width:600px) {
+
+  .logo__row,
+  .login__svg {
+    display: none;
+  }
+
+  .main {
+    padding-top: 100px;
+  }
+
+  body {
+    font-size: 12px;
+  }
+
+  .wrapper__input {
+    max-width: 400px;
+    gap: 0;
+    padding-right: 0;
+  }
+
+  .exercisLink {
+    width: 20px;
+    height: 20px;
+  }
+
+  .gifUrl {
+    width: 100px;
+    height: auto;
+    padding-left: 0;
+  }
+
+  .btn {
+    padding: 0;
+    width: auto;
+  }
+
+
+  .repsLink {
+    display: none;
+  }
+}
+
+@media screen and (max-width:800px) {
+
+  .imageGif {
+    width: 200px;
+  }
+
+  .repsWrapper {
+    width: 70%;
+  }
+
+  .repsInput {
+    padding: 0;
+    width: 100px;
+  }
+}
