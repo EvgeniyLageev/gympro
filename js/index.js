@@ -282,7 +282,7 @@ function ModuleView() {
       h3.innerHTML = `${date[i]} "- это дата в миллисекундах))"`
 
       let p = document.createElement("p")
-      p.innerHTML = "Здесь были бы графики, если бы я успел)))"
+      p.innerHTML = "Здесь был бы график, если бы я успел))).</br> Вы сделали ___ повторов с весом___."
 
       h2.after(divAttempt)
       divAttempt.prepend(h3)

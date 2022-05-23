@@ -43,11 +43,13 @@ body {
   display: flex;
   align-items: center;
   border-bottom: 3px solid deepskyblue;
+  padding-left: 10px;
 }
 
 /* ====user&login====== */
 
-.login__svg {
+.login__svg,
+.login__svg2 {
   stroke: orange;
   stroke-opacity: 0.5;
   cursor: pointer;
@@ -68,9 +70,9 @@ body {
   padding-right: 10px;
 }
 
-/* .svg_signIn {
+.svg_signIn {
   stroke-opacity: 1;
-} */
+}
 
 .login__word {
   color: white;
@@ -160,6 +162,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 100%
 }
 
 .main {
