@@ -593,6 +593,31 @@ function ModuleModel() {
         console.log(error)
       });
   }
+  //звук
+  this.playSound = function () {
+    var audio = new Audio(); // Создаём новый элемент Audio
+    audio.src = "./sound/click.m4r"; // Указываем путь к звуку "клика"
+    audio.autoplay = true; // запускаем
+  }
+  //полноэкранный режим
+  this.toggleFullScreen = function () {
+
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+
+    }
+  }
+  //кнопка назад
+  this.backButton = function () {
+    window.history.back();
+  }
+
+
+
   //создает новую БД для нового пользователя
   copyDataBase = function (user) {
 
@@ -636,13 +661,16 @@ function ModuleController() {
     //вешаем обработчик на клики
     document.addEventListener('click', function (event) {
 
+      console.log(event.target)
+      console.log(event.target.id)
+
       let exercis_id = event.target.parentElement.getAttribute("data-id")
       let exercis_chekedStatus = event.target.parentElement.getAttribute("data-cheked")
 
       //конопка ищет упражнения из базы
       switch (event.target && event.target.id) {
         case ("btnSearch"):
-
+          myModuleModel.playSound()
           myModuleModel.createExercisList(
             myModuleContainer,
             document.getElementById("targetList").value,
@@ -654,7 +682,7 @@ function ModuleController() {
 
         //кнопка для регистрации нового пользователя
         case ("btn-registr"):
-
+          myModuleModel.playSound()
           myModuleModel.createUser(
             document.getElementById("email_input").value,
             document.getElementById("password_input").value,
@@ -663,6 +691,7 @@ function ModuleController() {
 
         //кнопка, что бы войти в свою учетную запись
         case ("btn-login"):
+          myModuleModel.playSound()
           myModuleModel.loginUser(
             document.getElementById("email_input").value,
             document.getElementById("password_input").value,
@@ -681,6 +710,7 @@ function ModuleController() {
 
         // выход из модального окна по клику в любом свободном месте
         case ("background"):
+          myModuleModel.playSound()
           myModuleModel.prepareCloseModalWindow();
           break;
 
@@ -690,14 +720,17 @@ function ModuleController() {
           break;
         //кнопка удаления упражнения
         case ("exercisDelete"):
+          myModuleModel.playSound()
           myModuleModel.findExercis(exercis_id)
           break;
         //помечаем нужно упражнение
         case ("exercisCheck"):
+          myModuleModel.playSound()
           myModuleModel.checkStatus(exercis_id, exercis_chekedStatus)
           break;
         //начало тренировки
         case ("startTrening"):
+          myModuleModel.playSound()
           let startExercisId = document.getElementById("chekedExercises").value
           myModuleModel.prepareOpenModalStart(startExercisId);
           break;
@@ -729,8 +762,17 @@ function ModuleController() {
           break;
         //должны выводить прогресс тренировок
         case ("btnCheckProgress"):
+          myModuleModel.playSound()
           let selCheckProgress = document.getElementById("selCheckProgress").value
           myModuleModel.prepareShowGraph(myModuleContainer, selCheckProgress);
+          break;
+        //полноэкранный режим и обратно
+        case ("fullScreen"):
+          myModuleModel.toggleFullScreen()
+          break;
+        //кнопка назад
+        case ("back"):
+          myModuleModel.backButton()
           break;
       }
     })
