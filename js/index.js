@@ -266,29 +266,57 @@ function ModuleView() {
   //показываем графики
   this.showGraph = function (myModuleContainer, name, date) {
 
-
     let divWrapper = document.createElement("div")
     divWrapper.classList.add("div__wrapper2")
     divWrapper.id = "div__wrapper"
     myModuleContainer.append(divWrapper)
 
     let h2 = document.createElement("h2")
-    h2.innerHTML = `${name}`
+    h2.innerHTML = `${name.toUpperCase()}`
     divWrapper.append(h2)
 
     for (let i = 0; i < date.length; i++) {
+      // let divAttempt = document.createElement("div")
+      // let h3 = document.createElement("h3")
+      // h3.classList.add("hTime")
+      // console.log(date)
+      // h3.innerHTML = `${new Date(date[i]).toUTCString()}`
+
+      // let p = document.createElement("p")
+      // p.innerHTML = "Здесь был бы график, если бы я успел))).</br> Вы сделали ___ повторов с весом___."
+
+      // h2.after(divAttempt)
+      // divAttempt.prepend(h3)
+      // h3.after(p)
+
       let divAttempt = document.createElement("div")
-      let h3 = document.createElement("h3")
-      console.log(date)
-      h3.innerHTML = `${new Date(date[i])}`
-
-      let p = document.createElement("p")
-      p.innerHTML = "Здесь был бы график, если бы я успел))).</br> Вы сделали ___ повторов с весом___."
-
+      divAttempt.classList.add("bigRWWrapper")
       h2.after(divAttempt)
-      divAttempt.prepend(h3)
-      h3.after(p)
-    }
+      divAttempt.innerHTML =
+        ` <div>
+            <h3 class="hTime">${new Date(date[i]).toUTCString()}</h3>
+
+        <table class="repsWeightWrapper">
+              <tr>
+                <td>1 <span class="wr">kgs</span></td>
+                <td>4 <span class="wr">reps</span></td>
+              </tr>
+              <tr>
+                <td>2 <span class="wr">kgs</span></td>
+                <td>4 <span class="wr">reps</span></td>
+              </tr>
+              <tr>
+                <td>3 <span class="wr">kgs</span></td>
+                <td>4 <span class="wr">reps</span></td>
+              </tr>
+              <tr>
+                <td>4 <span class="wr">kgs</span></td>
+                <td>4 <span class="wr">reps</span></td>
+              </tr>
+        </table>
+
+      </div>
+    `}
 
 
   }
@@ -321,6 +349,7 @@ function ModuleView() {
                                                     <form class="repsWrapper">
                                                             <p>"${Object.values(data)[0].name}"</p>
                                                             <img class="imageGif" src="${Object.values(data)[0].gifUrl}" alt="">
+                                                            <p id="attentionMessage"></p>
                                                       <div class="minRepsWrapper" id="minRepsWrapper" data-id="${Object.values(data)[0].id}" data-name="${Object.values(data)[0].name}">
                                                              
 
@@ -447,7 +476,8 @@ function ModuleModel() {
 
         myAppDB.ref("users/" + user.uid).set({
           username: userEmail,
-          email: userPass
+          userEmail: userEmail,
+          userPass: userPass
         })
           .then(function () {
             myModuleView.closeModalWindow();
@@ -577,6 +607,7 @@ function ModuleModel() {
 
     myAppDB.ref("users/" + (auth.currentUser).uid + "/progress/" + selCheckProgress).on("value", function (snapshot) {
       let dateKey = Object.keys(snapshot.val())
+      console.log(snapshot.val())
       myModuleView.showGraph(myModuleContainer, selCheckProgress, dateKey)
     })
     myModuleView.clearDataExercises()
@@ -588,10 +619,8 @@ function ModuleModel() {
     myAppDB.ref("users/" + auth.currentUser.uid + "/progress/" + dataNam).update(
       {
         [newDate]: {
-          [firstRepWeight]: firstRepExercis,
-          [secondRepWeight]: secondRepExercis,
-          [thirdRepWeight]: thirdRepExercis,
-          [fourRepWeight]: fourRepExercis,
+          firstRepWeight, firstRepExercis, secondRepWeight, secondRepExercis,
+          thirdRepWeight, thirdRepExercis, fourRepWeight, fourRepExercis
         }
 
       })
@@ -667,8 +696,8 @@ function ModuleController() {
     //вешаем обработчик на клики
     document.addEventListener('click', function (event) {
 
-      console.log(event.target)
-      console.log(event.target.id)
+      // console.log(event.target)
+      // console.log(event.target.id)
 
       let exercis_id = event.target.parentElement.getAttribute("data-id")
       let exercis_chekedStatus = event.target.parentElement.getAttribute("data-cheked")
@@ -755,6 +784,7 @@ function ModuleController() {
           let minRepsWrapper = document.getElementById("minRepsWrapper")
           let dataId = minRepsWrapper.getAttribute("data-id")
           let dataName = minRepsWrapper.getAttribute("data-name")
+          let attentionMessage = document.getElementById("attentionMessage")
 
           if (
             (firstRepWeight.value && firstRepExercis.value && secondRepWeight.value && secondRepExercis.value &&
@@ -762,8 +792,10 @@ function ModuleController() {
 
             myModuleModel.sentForm(firstRepWeight.value, firstRepExercis.value, secondRepWeight.value, secondRepExercis.value,
               thirdRepWeight.value, thirdRepExercis.value, fourRepWeight.value, fourRepExercis.value, dataId, dataName)
+
+            myModuleModel.prepareCloseModalWindow()
           }
-          myModuleModel.prepareCloseModalWindow()
+          attentionMessage.innerHTML = "please fill in all fields"
           break;
         //должны выводить прогресс тренировок
         case ("btnCheckProgress"):

@@ -196,6 +196,31 @@ body {
   font-weight: bold;
 }
 
+/* -------------history----------- */
+
+.bigRWWrapper {
+  width: 80%;
+}
+
+.repsWeightWrapper {
+  width: 100%
+}
+
+.hTime {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 400;
+  border-bottom: 1px solid black;
+}
+
+.wr {
+  font-size: 12px;
+  font-style: italic;
+  color: gray;
+  font-weight: 600;
+}
+
+
 /* -------------модальное с упражнением---------
  */
 .repsWrapper {
