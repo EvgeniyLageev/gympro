@@ -619,8 +619,10 @@ function ModuleModel() {
     myAppDB.ref("users/" + auth.currentUser.uid + "/progress/" + dataNam).update(
       {
         [newDate]: {
-          firstRepWeight, firstRepExercis, secondRepWeight, secondRepExercis,
-          thirdRepWeight, thirdRepExercis, fourRepWeight, fourRepExercis
+          [firstRepWeight]: firstRepExercis,
+          [secondRepWeight]: secondRepExercis,
+          [thirdRepWeight]: thirdRepExercis,
+          [fourRepWeight]: fourRepExercis,
         }
 
       })
